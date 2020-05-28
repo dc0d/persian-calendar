@@ -68,9 +68,9 @@ func Test_convert_dates_for_2020_5_29(t *testing.T) {
 }
 
 func Test_convert_gregorian_to_persian(t *testing.T) {
-	for i, gregorianDate := range sampleGregorianDates {
-		persianDate := gregorianDate.ToPersian()
-		expectedPersianDate := samplePersianDates[i]
+	for _, tc := range testCases {
+		persianDate := tc.gregorianDate.ToPersian()
+		expectedPersianDate := tc.persianDate
 
 		t.Run(fmt.Sprintf("year %d", persianDate.Year), func(t *testing.T) {
 			assert.Equal(t, expectedPersianDate, persianDate)
@@ -79,9 +79,9 @@ func Test_convert_gregorian_to_persian(t *testing.T) {
 }
 
 func Test_convert_persian_to_gregorian(t *testing.T) {
-	for i, persianDate := range samplePersianDates {
-		gregorianDate := persianDate.ToGregorian()
-		expectedGregorianDate := sampleGregorianDates[i]
+	for _, tc := range testCases {
+		gregorianDate := tc.persianDate.ToGregorian()
+		expectedGregorianDate := tc.gregorianDate
 
 		t.Run(fmt.Sprintf("year %d", gregorianDate.Year), func(t *testing.T) {
 			assert.Equal(t, expectedGregorianDate, gregorianDate)
@@ -90,10 +90,10 @@ func Test_convert_persian_to_gregorian(t *testing.T) {
 }
 
 func Test_persian_leap_years(t *testing.T) {
-	for i, gregorianDate := range sampleGregorianDates {
-		pd := gregorianDate.ToPersian()
+	for _, tc := range testCases {
+		pd := tc.gregorianDate.ToPersian()
 		isLeapYear := pd.IsLeap()
-		shouldBeLeapYear := samplePersianLeapYears[i]
+		shouldBeLeapYear := tc.isPersianLeap
 
 		t.Run(fmt.Sprintf("year %d", pd.Year), func(t *testing.T) {
 			assert.Equal(t, shouldBeLeapYear, isLeapYear, "expected to be leap year")
@@ -101,7 +101,26 @@ func Test_persian_leap_years(t *testing.T) {
 	}
 }
 
-var samplePersianLeapYears = []bool{
+var testCases []testCase
+
+func init() {
+	for i, isLeap := range initialPersianLeapYears {
+		tc := testCase{
+			isPersianLeap: isLeap,
+			persianDate:   initialPersianDates[i],
+			gregorianDate: initialGregorianDates[i],
+		}
+		testCases = append(testCases, tc)
+	}
+}
+
+type testCase struct {
+	isPersianLeap bool
+	persianDate   calendar.PersianDate
+	gregorianDate calendar.GregorianDate
+}
+
+var initialPersianLeapYears = []bool{
 	true,
 	false,
 	false,
@@ -170,7 +189,7 @@ var samplePersianLeapYears = []bool{
 	false,
 }
 
-var samplePersianDates = []calendar.PersianDate{
+var initialPersianDates = []calendar.PersianDate{
 	{Year: 1354, Month: 1, Day: 1},
 	{Year: 1355, Month: 1, Day: 1},
 	{Year: 1356, Month: 1, Day: 1},
@@ -239,7 +258,7 @@ var samplePersianDates = []calendar.PersianDate{
 	{Year: 1419, Month: 1, Day: 1},
 }
 
-var sampleGregorianDates = []calendar.GregorianDate{
+var initialGregorianDates = []calendar.GregorianDate{
 	{Year: 1975, Month: 3, Day: 21},
 	{Year: 1976, Month: 3, Day: 21},
 	{Year: 1977, Month: 3, Day: 21},
