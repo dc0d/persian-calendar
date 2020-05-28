@@ -1,5 +1,7 @@
 package calendar_test
 
+// See the LICENSE file.
+
 import (
 	"fmt"
 	"testing"
@@ -112,6 +114,168 @@ func init() {
 		}
 		testCases = append(testCases, tc)
 	}
+
+	testCases = append(testCases, testCase{
+		isPersianLeap: true,
+		persianDate:   calendar.PersianDate{Year: 1210, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1831, Month: 3, Day: 21},
+	})
+
+	testCases = append(testCases, testCase{
+		isPersianLeap: true,
+		persianDate:   calendar.PersianDate{Year: 1214, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1835, Month: 3, Day: 21},
+	})
+
+	testCases = append(testCases, testCase{
+		isPersianLeap: true,
+		persianDate:   calendar.PersianDate{Year: 1218, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1839, Month: 3, Day: 21},
+	})
+
+	testCases = append(testCases, testCase{
+		isPersianLeap: true,
+		persianDate:   calendar.PersianDate{Year: 1226, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1847, Month: 3, Day: 21},
+	})
+
+	testCases = append(testCases, testCase{
+		isPersianLeap: true,
+		persianDate:   calendar.PersianDate{Year: 1230, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1851, Month: 3, Day: 21},
+	})
+
+	testCases = append(testCases, testCase{
+		isPersianLeap: true,
+		persianDate:   calendar.PersianDate{Year: 1234, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1855, Month: 3, Day: 21},
+	})
+
+	testCases = append(testCases, testCase{
+		isPersianLeap: true,
+		persianDate:   calendar.PersianDate{Year: 1238, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1859, Month: 3, Day: 21},
+	})
+
+	testCases = append(testCases, testCase{
+		isPersianLeap: true,
+		persianDate:   calendar.PersianDate{Year: 1243, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1864, Month: 3, Day: 20},
+	})
+
+	testCases = append(testCases, testCase{
+		isPersianLeap: true,
+		persianDate:   calendar.PersianDate{Year: 1247, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1868, Month: 3, Day: 20},
+	})
+
+	testCases = append(testCases, testCase{
+		isPersianLeap: true,
+		persianDate:   calendar.PersianDate{Year: 1251, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1872, Month: 3, Day: 20},
+	})
+
+	testCases = append(testCases, testCase{
+		isPersianLeap: true,
+		persianDate:   calendar.PersianDate{Year: 1255, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1876, Month: 3, Day: 20},
+	})
+
+	testCases = append(testCases, testCase{
+		isPersianLeap: true,
+		persianDate:   calendar.PersianDate{Year: 1259, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1880, Month: 3, Day: 20},
+	})
+
+	testCases = append(testCases, testCase{
+		isPersianLeap: true,
+		persianDate:   calendar.PersianDate{Year: 1263, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1884, Month: 3, Day: 20},
+	})
+
+	testCases = append(testCases, testCase{
+		isPersianLeap: true,
+		persianDate:   calendar.PersianDate{Year: 1267, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1888, Month: 3, Day: 20},
+	})
+
+	testCases = append(testCases, testCase{
+		isPersianLeap: true,
+		persianDate:   calendar.PersianDate{Year: 1271, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1892, Month: 3, Day: 20},
+	})
+
+	testCases = append(testCases, testCase{
+		isPersianLeap: true,
+		persianDate:   calendar.PersianDate{Year: 1276, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1897, Month: 3, Day: 20},
+	})
+
+	testCases = append(testCases, testCase{
+		isPersianLeap: true,
+		persianDate:   calendar.PersianDate{Year: 1280, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1901, Month: 3, Day: 21},
+	})
+
+	testCases = append(testCases, testCase{
+		isPersianLeap: true,
+		persianDate:   calendar.PersianDate{Year: 1284, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1905, Month: 3, Day: 21},
+	})
+
+	testCases = append(testCases, testCase{
+		isPersianLeap: true,
+		persianDate:   calendar.PersianDate{Year: 1288, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1909, Month: 3, Day: 21},
+	})
+
+	testCases = append(testCases, testCase{
+		isPersianLeap: true,
+		persianDate:   calendar.PersianDate{Year: 1292, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1913, Month: 3, Day: 21},
+	})
+
+	testCases = append(testCases, testCase{
+		isPersianLeap: true,
+		persianDate:   calendar.PersianDate{Year: 1296, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1917, Month: 3, Day: 21},
+	})
+
+	testCases = append(testCases, testCase{
+		isPersianLeap: true,
+		persianDate:   calendar.PersianDate{Year: 1300, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1921, Month: 3, Day: 21},
+	})
+
+	testCases = append(testCases, testCase{
+		isPersianLeap: true,
+		persianDate:   calendar.PersianDate{Year: 1304, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1925, Month: 3, Day: 21},
+	})
+
+	testCases = append(testCases, testCase{
+		isPersianLeap: true,
+		persianDate:   calendar.PersianDate{Year: 1309, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1930, Month: 3, Day: 21},
+	})
+
+	testCases = append(testCases, testCase{
+		isPersianLeap: true,
+		persianDate:   calendar.PersianDate{Year: 1313, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1934, Month: 3, Day: 21},
+	})
+
+	testCases = append(testCases, testCase{
+		isPersianLeap: true,
+		persianDate:   calendar.PersianDate{Year: 1317, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1938, Month: 3, Day: 21},
+	})
+
+	testCases = append(testCases, testCase{
+		isPersianLeap: true,
+		persianDate:   calendar.PersianDate{Year: 1321, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1942, Month: 3, Day: 21},
+	})
 }
 
 type testCase struct {

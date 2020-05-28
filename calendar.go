@@ -1,12 +1,20 @@
+// Package calendar can be used for converting dates between Persian and Gregorian calendars.
+// It is based on the work of English mathematician, KAZIMIERZ M. BORKOWSKI (http://www.astro.uni.torun.pl/~kb/Papers/EMP/PersianC-EMP.htm)
+// which is "Using the analytical theory of the motion of the Earth around the Sun the times of the vernal (Spring) equinox has been calculated over the period from the Hijra (AD 622) to AD 3800".
 package calendar
 
+// See the LICENSE file.
+
+// PersianDate represents a Persian date, using year, month and day.
 type PersianDate struct{ Year, Month, Day int }
 
+// ToGregorian converts this Persian date to equivalent Gregorian date.
 func (pd PersianDate) ToGregorian() (gd GregorianDate) {
 	gd.Year, gd.Month, gd.Day = persianToGregorian(pd.Year, pd.Month, pd.Day)
 	return
 }
 
+// IsLeap indicates if this Persian year is a leap year or not.
 func (pd PersianDate) IsLeap() bool {
 	nextPD := PersianDate{Year: pd.Year + 1, Month: 1, Day: 1}
 	gd := nextPD.ToGregorian()
@@ -15,8 +23,10 @@ func (pd PersianDate) IsLeap() bool {
 	return lastDay == 30
 }
 
+// GregorianDate represents a Gregorian date, using year, month and day.
 type GregorianDate struct{ Year, Month, Day int }
 
+// ToPersian converts this Gregorian date to equivalent Persian date.
 func (gd GregorianDate) ToPersian() (pd PersianDate) {
 	pd.Year, pd.Month, pd.Day = gregorianToPersian(gd.Year, gd.Month, gd.Day)
 	return
