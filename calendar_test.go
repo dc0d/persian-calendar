@@ -67,7 +67,7 @@ func Test_convert_dates_for_2020_5_29(t *testing.T) {
 	})
 }
 
-func Test_convert_gregorian_to_persian_for_samples(t *testing.T) {
+func Test_convert_gregorian_to_persian(t *testing.T) {
 	for i, gregorianDate := range sampleGregorianDates {
 		persianDate := gregorianDate.ToPersian()
 		expectedPersianDate := samplePersianDates[i]
@@ -76,6 +76,98 @@ func Test_convert_gregorian_to_persian_for_samples(t *testing.T) {
 			assert.Equal(t, expectedPersianDate, persianDate)
 		})
 	}
+}
+
+func Test_convert_persian_to_gregorian(t *testing.T) {
+	for i, persianDate := range samplePersianDates {
+		gregorianDate := persianDate.ToGregorian()
+		expectedGregorianDate := sampleGregorianDates[i]
+
+		t.Run(fmt.Sprintf("year %d", gregorianDate.Year), func(t *testing.T) {
+			assert.Equal(t, expectedGregorianDate, gregorianDate)
+		})
+	}
+}
+
+func Test_persian_leap_years(t *testing.T) {
+	for i, gregorianDate := range sampleGregorianDates {
+		pd := gregorianDate.ToPersian()
+		isLeapYear := pd.IsLeap()
+		shouldBeLeapYear := samplePersianLeapYears[i]
+
+		t.Run(fmt.Sprintf("year %d", pd.Year), func(t *testing.T) {
+			assert.Equal(t, shouldBeLeapYear, isLeapYear, "expected to be leap year")
+		})
+	}
+}
+
+var samplePersianLeapYears = []bool{
+	true,
+	false,
+	false,
+	false,
+	true,
+	false,
+	false,
+	false,
+	true,
+	false,
+	false,
+	false,
+	true,
+	false,
+	false,
+	false,
+	true,
+	false,
+	false,
+	false,
+	false,
+	true,
+	false,
+	false,
+	false,
+	true,
+	false,
+	false,
+	false,
+	true,
+	false,
+	false,
+	false,
+	true,
+	false,
+	false,
+	false,
+	true,
+	false,
+	false,
+	false,
+	true,
+	false,
+	false,
+	false,
+	true,
+	false,
+	false,
+	false,
+	true,
+	false,
+	false,
+	false,
+	false,
+	true,
+	false,
+	false,
+	false,
+	true,
+	false,
+	false,
+	false,
+	true,
+	false,
+	false,
+	false,
 }
 
 var samplePersianDates = []calendar.PersianDate{

@@ -2,12 +2,17 @@ package calendar
 
 type PersianDate struct{ Year, Month, Day int }
 
-func (PersianDate) ToGregorian() GregorianDate {
-	return GregorianDate{
-		Year:  2020,
-		Month: 5,
-		Day:   29,
-	}
+func (pd PersianDate) ToGregorian() (gd GregorianDate) {
+	gd.Year, gd.Month, gd.Day = persianToGregorian(pd.Year, pd.Month, pd.Day)
+	return
+}
+
+func (pd PersianDate) IsLeap() bool {
+	nextPD := PersianDate{Year: pd.Year + 1, Month: 1, Day: 1}
+	gd := nextPD.ToGregorian()
+	gd.Day--
+	lastDay := gd.ToPersian().Day
+	return lastDay == 30
 }
 
 type GregorianDate struct{ Year, Month, Day int }
@@ -17,11 +22,28 @@ func (gd GregorianDate) ToPersian() (pd PersianDate) {
 	return
 }
 
+func persianToGregorian(pyear, pmonth, pday int) (gyear, gmonth, gday int) {
+	jd := jal2jd(int32(pyear), int32(pmonth), int32(pday))
+	L, M, N := jd2jg(jd, 0)
+	gyear, gmonth, gday = int(L), int(M), int(N)
+	return
+}
+
 func gregorianToPersian(gyear, gmonth, gday int) (pyear, pmonth, pday int) {
 	jd := jg2jd(int32(gyear), int32(gmonth), int32(gday), 0)
 	L, M, N := jd2jal(jd)
 	pyear, pmonth, pday = int(L), int(M), int(N)
 	return
+}
+
+func jal2jd(Jy, Jm, Jd int32) int32 {
+	//Converts a date of the Jalaali calendar to the Julian Day Number
+	//Input:  Jy - Jalaali year (1 to 3100)
+	//        Jm - month (1 to 12)
+	//        Jd - day (1 to 29/31)
+	//Output: Jal2JD - the Julian Day Number
+	_, iGy, March := jalCal(Jy)
+	return jg2jd(iGy, 3, March, 0) + (Jm-1)*31 - Jm/7*(Jm-7) + Jd - 1
 }
 
 func jd2jal(JDN int32) (Jy, Jm, Jd int32) {
