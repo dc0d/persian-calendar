@@ -3,7 +3,6 @@ package calendar_test
 // See the LICENSE file.
 
 import (
-	"fmt"
 	"testing"
 
 	calendar "github.com/dc0d/persian-calendar"
@@ -74,9 +73,7 @@ func Test_convert_gregorian_to_persian(t *testing.T) {
 		persianDate := tc.gregorianDate.ToPersian()
 		expectedPersianDate := tc.persianDate
 
-		t.Run(fmt.Sprintf("year %d", persianDate.Year), func(t *testing.T) {
-			assert.Equal(t, expectedPersianDate, persianDate)
-		})
+		assert.Equal(t, expectedPersianDate, persianDate)
 	}
 }
 
@@ -85,9 +82,7 @@ func Test_convert_persian_to_gregorian(t *testing.T) {
 		gregorianDate := tc.persianDate.ToGregorian()
 		expectedGregorianDate := tc.gregorianDate
 
-		t.Run(fmt.Sprintf("year %d", gregorianDate.Year), func(t *testing.T) {
-			assert.Equal(t, expectedGregorianDate, gregorianDate)
-		})
+		assert.Equal(t, expectedGregorianDate, gregorianDate)
 	}
 }
 
@@ -97,9 +92,7 @@ func Test_persian_leap_years(t *testing.T) {
 		isLeapYear := pd.IsLeap()
 		shouldBeLeapYear := tc.isPersianLeap
 
-		t.Run(fmt.Sprintf("year %d", pd.Year), func(t *testing.T) {
-			assert.Equal(t, shouldBeLeapYear, isLeapYear, "expected to be leap year")
-		})
+		assert.Equal(t, shouldBeLeapYear, isLeapYear, "expected to be leap year")
 	}
 }
 
