@@ -109,6 +109,12 @@ func init() {
 	}
 
 	testCases = append(testCases, testCase{
+		isPersianLeap: false,
+		persianDate:   calendar.PersianDate{Year: 1209, Month: 1, Day: 1},
+		gregorianDate: calendar.GregorianDate{Year: 1830, Month: 3, Day: 21},
+	})
+
+	testCases = append(testCases, testCase{
 		isPersianLeap: true,
 		persianDate:   calendar.PersianDate{Year: 1210, Month: 1, Day: 1},
 		gregorianDate: calendar.GregorianDate{Year: 1831, Month: 3, Day: 21},
