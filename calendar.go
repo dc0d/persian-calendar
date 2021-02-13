@@ -1,7 +1,14 @@
 // Package calendar can be used for converting dates between Persian and Gregorian calendars.
-// It is based on the work of English mathematician, KAZIMIERZ M. BORKOWSKI (http://www.astro.uni.torun.pl/~kb/Papers/EMP/PersianC-EMP.htm)
-// which is "Using the analytical theory of the motion of the Earth around the Sun the times of the vernal (Spring) equinox has been calculated over the period from the Hijra (AD 622) to AD 3800".
+// It is based on the work of English mathematician, KAZIMIERZ M. BORKOWSKI
+// (http://www.astro.uni.torun.pl/~kb/Papers/EMP/PersianC-EMP.htm)
+// which is "Using the analytical theory of the motion of the Earth around the Sun the times
+// of the vernal (Spring) equinox has been calculated over the period from the Hijra (AD 622) to AD 3800".
+//
+// Some of test fixtures for Persian leap years are imported from https://github.com/persiancal/official-data
+// and it's based on calculations from Geophysics Institute of University of Tehran.
 package calendar
+
+import "fmt"
 
 // See the LICENSE file.
 
@@ -106,7 +113,7 @@ func jd2jal(JDN int32) (Jy, Jm, Jd int32) {
 //Jalaali years starting the 33-year rule
 func jalCal(Jy int32) (leap, Gy, March int32) {
 	leap = 0
-	Gy = 0
+	// Gy = 0
 	March = 0
 	Gy = Jy + 621
 	leapJ := int32(-14)
@@ -114,6 +121,7 @@ func jalCal(Jy int32) (leap, Gy, March int32) {
 	if Jy < jp || Jy > breaks[19] {
 		//      print'(10x,a,i5,a,i5,a)',
 		//*' Invalid Jalaali year number:',Jy,' (=',Gy,' Gregorian)'
+		panic(fmt.Errorf("Jy: %v, Gy: %v", Jy, Gy))
 	}
 	//Find the limiting years for the Jalaali year Jy
 	jump := int32(0)
